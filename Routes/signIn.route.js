@@ -17,7 +17,7 @@ signIn.post("/",async(req,res)=>{
             bcrypt.compare(password,hash,(err,result)=>{
                 if(result){
                     const token=jwt.sign({"UserID":user[0]._id},process.env.private_key)
-                    res.status(200).send({message:"Login Successful",token})
+                    res.status(200).send({message:"Login Successful",token,user})
                 }else{
                     res.status(400).send({message:"Please logIn Again"})
                 }
