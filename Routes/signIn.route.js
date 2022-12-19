@@ -8,6 +8,7 @@ const {SignUpModel}=require("../Models/signUp.model")
 
 const signIn=Router();
 
+
 signIn.post("/",async(req,res)=>{
     const {email,password}=req.body;
     try{
@@ -34,4 +35,13 @@ signIn.post("/",async(req,res)=>{
     }
 })
 
+signIn.get("/get",async(req,res)=>{
+    try{
+        const data=await SignUpModel.find();
+        res.status(200).send(data)
+      }catch(err){
+          console.log(err)
+          res.status(400).send({message:"Something went wrong"})
+      }
+})
 module.exports={signIn}
